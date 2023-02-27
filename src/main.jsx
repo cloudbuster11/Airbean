@@ -1,38 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
-import About from './views/About/About';
-import Menu from './views/Menu/Menu';
-import Status from './views/Status/Status';
-import Profile from './views/Profile/Profile';
-import './index.css';
+import { RouterProvider } from 'react-router-dom';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-  },
-  {
-    path: '/about',
-    element: <About />,
-  },
-  {
-    path: '/menu',
-    element: <Menu />,
-  },
-  {
-    path: '/status',
-    element: <Status />,
-  },
-  {
-    path: '/profile',
-    element: <Profile />,
-  },
-]);
+import { legacy_createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import { router } from './router';
+import { cartReducer } from './reducers/cartReducer';
+
+const store = legacy_createStore(
+  cartReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
