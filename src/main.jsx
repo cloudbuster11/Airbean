@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import About from './views/About/About';
-import Menu from './views/Menu/menu';
+import Menu from './views/Menu/Menu';
 import Status from './views/Status/Status';
 import Profile from './views/Profile/Profile';
 import './index.css';
