@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import MenuItem from '../../components/MenuItem/MenuItem';
+import '../Menu/Menu.scss';
 
 export default function Menu() {
   const [menuData, setMenuData] = useState([]);
@@ -24,7 +25,7 @@ export default function Menu() {
   });
 
   return (
-    <article>
+    <article className='menu__container'>
       <h1>Meny</h1>
       {menuList}
     </article>

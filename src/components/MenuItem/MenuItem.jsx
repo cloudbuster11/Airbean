@@ -1,6 +1,8 @@
+import '../MenuItem/MenuItem.scss';
+
 export default function MenuItem(props) {
   return (
-    <article>
+    <article className='product'>
       <button>+</button>
       <section>
         <h3>{props.product.title}</h3>
