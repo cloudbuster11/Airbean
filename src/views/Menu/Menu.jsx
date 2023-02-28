@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { addProduct, removeProduct } from '../../actions/cartActions';
-import MenuItem from '../../components/MenuItem/MenuItem';
-import Cart from '../../components/Cart/Cart';
-import '../Menu/Menu.scss';
 
-import leafBottom from '../../assets/leafs_bottom.svg';
-import leafTop from '../../assets/leafs_top.svg';
+import Header from '../../components/Header/Header';
+import Cart from '../../components/Cart/Cart';
+import MenuItem from '../../components/MenuItem/MenuItem';
+
+import '../Menu/Menu.scss';
 
 export default function Menu() {
   const [menuData, setMenuData] = useState([]);
@@ -44,18 +44,12 @@ export default function Menu() {
   });
 
   return (
-    <main
-      className='menu'
-      style={{
-        '--top-img': `url(${leafTop})`,
-        '--bottom-img': `url(${leafBottom})`,
-      }}
-    >
-      <header>
+    <main className='container menu'>
+      <Header>
         <Cart />
-      </header>
+      </Header>
 
-      <article className='menu__container'>
+      <article className='container__content menu__container'>
         <h1 className='menu__title'>Meny</h1>
         {allProductsElem}
       </article>
