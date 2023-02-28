@@ -1,127 +1,81 @@
 import { useState } from 'react';
 
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import OrderHistory from '../../components/OrderHistory/OrderHistory';
 
 export default function Profile() {
-  const [isSignedIn, setIsSignedIn] = useState(sessionStorage.token);
-  const [displayCreateAccout, setDisplayCreateAccount] = useState(false);
+  const [token, setToken] = useState(sessionStorage.token);
+  const [displaySignUp, setDisplaySignUp] = useState(false);
 
-  const [userName, setUsername] = useState('');
-  const [passWord, setPassWord] = useState('');
-
-  const createAccount = async () => {
-    const url = 'https://airbean.awesomo.dev/api/user/signup';
-    const requestOptions = {
+  const createRequest = (data) => {
+    return {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: userName, password: passWord }),
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify(data),
     };
+  }
 
-    try {
-      const resp = await fetch(url, requestOptions);
-      const data = await resp.json();
-      alert('Användare skapad.');
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const signIn = async () => {
+  const login = async (userData) => {
     const url = 'https://airbean.awesomo.dev/api/user/login';
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: userName, password: passWord }),
-    };
 
     try {
-      const resp = await fetch(url, requestOptions);
+      const resp = await fetch(url, createRequest(userData));
       const data = await resp.json();
       sessionStorage.setItem('token', data.token);
-      setIsSignedIn(true);
-      console.log(data);
+      setToken(data.token);
     } catch (err) {
       console.error(err);
     }
   };
 
-  function handleClickCreateAccount(e) {
-    e.preventDefault();
-    createAccount();
-  }
+  const signUp = async (userData) => {
+    const url = 'https://airbean.awesomo.dev/api/user/signup';
 
-  function handleClickSignIn(e) {
-    e.preventDefault();
-    signIn();
-  }
+    try {
+      const resp = await fetch(url, createRequest(userData));
+      const data = await resp.json();
+      setDisplaySignUp(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  const signInElem = (
-    <section>
-      <h1>Välkommen till AirBean-familjen!</h1>
-      <p>Logga in nedan för att se din orderhistorik</p>
-      <form>
-        <label htmlFor='username'>Namn</label>
-        <input
-          name='username'
-          id='username'
-          type='text'
-          placeholder='Användarnamn'
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor='password'>Lösenord</label>
-        <input
-          name='password'
-          id='password'
-          type='password'
-          placeholder='Lösenord'
-          onChange={(e) => setPassWord(e.target.value)}
-        />
-      </form>
+  const loginForm = (
+    <ProfileForm
+      title='Logga in nedan för att se din orderhistorik.'
+      button='Logga in'
+      handler={login}
+      key='login'
+    >
       <p>
-        Inget konto än? Skapa ett <span onClick={() => setDisplayCreateAccount(true)}>här</span>
+        Inget konto än? Skapa ett <span onClick={() => setDisplaySignUp(true)}>här</span>
       </p>
-      <button onClick={(e) => handleClickSignIn(e)}>Logga in</button>
-    </section>
+    </ProfileForm>
   );
 
-  const createAccountElem = (
-    <section>
-      <h1>Välkommen till AirBean-familjen!</h1>
-      <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
-      <form>
-        <label htmlFor='username'>Namn</label>
-        <input
-          name='username'
-          id='username'
-          type='text'
-          placeholder='Användarnamn'
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor='password'>Lösenord</label>
-        <input
-          name='password'
-          id='password'
-          type='password'
-          placeholder='Lösenord'
-          onChange={(e) => setPassWord(e.target.value)}
-        />
-      </form>
+  const signUpForm = (
+    <ProfileForm
+      title='Genom att skapa ett konto nedan kan du spara och se din orderhistorik.'
+      button='Skapa konto'
+      handler={signUp}
+      key='signUp'
+    >
       <p>
-        Redan medlem? Logga in <span onClick={() => setDisplayCreateAccount(false)}>här</span>
+        Redan medlem? Logga in <span onClick={() => setDisplaySignUp(false)}>här</span>
       </p>
-      <button onClick={(e) => handleClickCreateAccount(e)}>Skapa konto</button>
-    </section>
+    </ProfileForm>
   );
 
   return (
     <article>
-      {!displayCreateAccout && !isSignedIn ? signInElem : null}
-      {displayCreateAccout && !isSignedIn ? createAccountElem : null}
-      {isSignedIn ? <OrderHistory /> : null}
+      <h1>Välkommen till AirBean-familjen!</h1>
+
+      {token
+        ? <OrderHistory />
+        : !displaySignUp
+          ? loginForm
+          : signUpForm
+      }
     </article>
   );
 }
