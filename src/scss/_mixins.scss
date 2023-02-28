@@ -11,3 +11,29 @@
 
     border-radius: 50%;
 }
+
+@mixin background($style: none, $color) {
+    @if $style ==none {
+        background: $color;
+    }
+
+    @else if $style ==top {
+        background:
+            no-repeat top url(/public/leafs_top.svg),
+            $color;
+    }
+
+    @else if $style ==bottom {
+        background:
+            no-repeat bottom url(/public/leafs_bottom.svg),
+            $color;
+        padding-bottom: 73px;
+    }
+
+    @else if $style ==(top & bottom) {
+        background: no-repeat top url(/public/leafs_top.svg),
+            no-repeat bottom url(/public/leafs_bottom.svg),
+            $color;
+        padding-bottom: 73px;
+    }
+}
