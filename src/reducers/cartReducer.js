@@ -1,5 +1,5 @@
 const initalState = {
-  cart: {},
+  cart: [],
 };
 
 function cartReducer(state = initalState, action) {
@@ -7,26 +7,38 @@ function cartReducer(state = initalState, action) {
 
   switch (action.type) {
     case 'cart/addProduct':
+      if (state.cart.some((item) => item.id === product.id)) {
+        return {
+          ...state,
+          cart: state.cart.map((item) => {
+            if (item.id === product.id) {
+              return { ...item, quantity: item.quantity + 1 }
+            }
+
+            return item
+          })
+        }
+      }
+
       return {
         ...state,
-        cart: {
-          ...state.cart,
-          [product.id]: {
-            ...product,
-            quantity: (state.cart[product.id]?.quantity ?? 0) + 1,
-          },
-        },
-      };
+        cart: [...state.cart, { ...product, quantity: 1 }]
+      }
 
     case 'cart/removeProduct':
-      if (state.cart[product.id]?.quantity) {
-        const { [product.id]: _, ...filtered } = state.cart;
-        const { quantity } = state.cart[product.id];
-
+      if (state.cart.some((item) => item.id === product.id)) {
         return {
           ...state,
           cart:
-            quantity > 1 ? { ...state.cart, [product.id]: { ...product, quantity: quantity - 1 } } : filtered,
+            state.cart
+              .map((item) => {
+                if (item.id === product.id) {
+                  return { ...item, quantity: item.quantity - 1 }
+                }
+
+                return item
+              })
+              .filter((item) => item.quantity > 0)
         };
       }
 

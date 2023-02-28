@@ -7,9 +7,7 @@ import './Cart.scss';
 
 export default function Cart() {
   const [showCart, setShowCart] = useState(false);
-  const cart = useSelector((state) => {
-    return Object.values(state.cart);
-  });
+  const cart = useSelector((state) => state.cart);
 
   const numberOfItems = cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
