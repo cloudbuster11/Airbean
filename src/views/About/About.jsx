@@ -2,11 +2,13 @@ import profilePic from '../../assets/cortado.svg';
 import headerImg from '../../assets/leafs_top.svg';
 import footerImg from '../../assets/leafs_bottom.svg';
 import './About.scss';
+import Nav from '../../components/Nav/Nav';
 
 export default function About() {
   return (
     <section className='about__container'>
-      <img src={ headerImg } className='about__header' alt='eva cortado photo' />
+      <img src={ headerImg } className='about__header' alt='header leaves' />
+      <Nav />
       <section className='about__content'>
         <h1 className='about__heading'>Vårt kaffe</h1>
         <p className='about__text'>
@@ -14,7 +16,7 @@ export default function About() {
         </p>
 
         <p className='about__text'>
-          Que dark fair trade, spoon decaffeinated, barista wings whipped, as rich aftertaste, con panna milk black, arabica white rich beans single shot extra affogato. So affogato macchiato sit extraction instant grinder seasonal organic, turkish single shot, single origin, and robusta strong to go so dripper. Viennese froth, grounds caramelization skinny aromatic cup kopi-luwak, fair trade flavour, frappuccino medium, café au lait flavour cultivar ut bar instant kopi-luwak.
+          Que dark fair trade, spoon decaffeinated, barista wings whipped, as rich aftertaste, con panna milk black, arabica white rich beans single shot extra affogato. So affogato macchiato sit extraction instant grinder seasonal organic, turkish single shot, single origin, and robusta strong to go so dripper.
         </p>
 
         <p className='about__text'>
@@ -26,7 +28,7 @@ export default function About() {
           <p className='profile__text'>VD & Grundare</p>
         </article>
       </section>
-      <img src={ footerImg } className='about__header' alt='eva cortado photo' />
+      <img src={ footerImg } className='about__header' alt='footer leaves' />
     </section>
   )
 }

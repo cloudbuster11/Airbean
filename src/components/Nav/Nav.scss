@@ -1,0 +1,48 @@
+@use '../../scss/colors';
+
+.nav__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    height: 100px;
+    width: 375px;
+    position: absolute;
+    top: 0;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: -100vh;
+    left: 0;
+    right: 0;
+    width: inherit;
+    height: 100vh; /* fix ? */
+    transition: 1s;
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    gap: 1.5rem;
+    background-color: colors.$brown;
+}
+
+h2 {
+    color: #fff;
+}
+
+.nav__btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 1rem;
+    top: 2rem;
+}
+
+.show-nav {
+	transform: translateY(100vh);
+}
