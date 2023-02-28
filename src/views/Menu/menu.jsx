@@ -26,7 +26,7 @@ export default function Menu() {
 
   return (
     <article className='menu__container'>
-      <h1>Meny</h1>
+      <h1 className='menu__title'>Meny</h1>
       {allProductsElem}
     </article>
   );
