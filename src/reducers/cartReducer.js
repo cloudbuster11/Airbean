@@ -25,10 +25,9 @@ function cartReducer(state = initalState, action) {
 
         return {
           ...state,
-          cart: quantity > 1
-            ? { ...state.cart, [product.id]: { ...product, quantity: quantity - 1 } }
-            : filtered,
-        }
+          cart:
+            quantity > 1 ? { ...state.cart, [product.id]: { ...product, quantity: quantity - 1 } } : filtered,
+        };
       }
 
     default:
