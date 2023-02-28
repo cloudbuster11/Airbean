@@ -1,11 +1,15 @@
 import { useState } from 'react';
 
+import OrderHistory from '../../components/OrderHistory/OrderHistory';
+
 export default function Profile() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [displayCreateAccout, setDisplayCreateAccount] = useState(false);
 
   const [userName, setUsername] = useState('');
   const [passWord, setPassWord] = useState('');
+
+  // if (sessionStorage.token) setIsSignedIn(true);
 
   const createAccount = async () => {
     const url = 'https://airbean.awesomo.dev/api/user/signup';
@@ -18,7 +22,7 @@ export default function Profile() {
     };
 
     try {
-      const resp = await fetch('https://airbean.awesomo.dev/api/user/signup', requestOptions);
+      const resp = await fetch(url, requestOptions);
       const data = await resp.json();
       alert('Användare skapad.');
     } catch (err) {
@@ -39,8 +43,8 @@ export default function Profile() {
     try {
       const resp = await fetch(url, requestOptions);
       const data = await resp.json();
-      // alert('Användare skapad.');
       sessionStorage.setItem('token', data.token);
+      setIsSignedIn(true);
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -59,6 +63,7 @@ export default function Profile() {
 
   const signInElem = (
     <section>
+      <h1>Välkommen till AirBean-familjen!</h1>
       <p>Logga in nedan för att se din orderhistorik</p>
       <form>
         <label htmlFor='username'>Namn</label>
@@ -87,6 +92,7 @@ export default function Profile() {
 
   const createAccountElem = (
     <section>
+      <h1>Välkommen till AirBean-familjen!</h1>
       <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
       <form>
         <label htmlFor='username'>Namn</label>
@@ -113,14 +119,11 @@ export default function Profile() {
     </section>
   );
 
-  // Om isSignedIn är true ska orderhistorik visas istället för null
-
   return (
     <article>
-      <h1>Välkommen till AirBean-familjen!</h1>
       {displayCreateAccout && !isSignedIn ? createAccountElem : null}
       {!displayCreateAccout && !isSignedIn ? signInElem : null}
-      {isSignedIn ? <p>Orderhistorik</p> : null}
+      {isSignedIn ? <OrderHistory /> : null}
     </article>
   );
 }
