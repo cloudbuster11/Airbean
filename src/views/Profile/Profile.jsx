@@ -3,7 +3,7 @@ import { useState } from 'react';
 import OrderHistory from '../../components/OrderHistory/OrderHistory';
 
 export default function Profile() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(sessionStorage.token);
   const [displayCreateAccout, setDisplayCreateAccount] = useState(false);
 
   const [userName, setUsername] = useState('');
