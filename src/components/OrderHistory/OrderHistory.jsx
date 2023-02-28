@@ -33,8 +33,8 @@ export default function OrderHistory() {
 
   let orderList = {};
   if (orderHistory.success === true) {
-    orderList = orderHistory.orderHistory.map((product) => {
-      return <OrderItem product={product} />;
+    orderList = orderHistory.orderHistory.map((product, id) => {
+      return <OrderItem key={id} product={product} />;
     });
   }
 

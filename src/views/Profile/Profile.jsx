@@ -9,8 +9,6 @@ export default function Profile() {
   const [userName, setUsername] = useState('');
   const [passWord, setPassWord] = useState('');
 
-  // if (sessionStorage.token) setIsSignedIn(true);
-
   const createAccount = async () => {
     const url = 'https://airbean.awesomo.dev/api/user/signup';
     const requestOptions = {
@@ -121,8 +119,8 @@ export default function Profile() {
 
   return (
     <article>
-      {displayCreateAccout && !isSignedIn ? createAccountElem : null}
       {!displayCreateAccout && !isSignedIn ? signInElem : null}
+      {displayCreateAccout && !isSignedIn ? createAccountElem : null}
       {isSignedIn ? <OrderHistory /> : null}
     </article>
   );
