@@ -1,0 +1,13 @@
+@mixin center {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin circle($dimension) {
+    width: $dimension;
+    height: $dimension;
+
+    border-radius: 50%;
+}

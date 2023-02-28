@@ -1,30 +1,53 @@
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { addProduct, removeProduct } from '../../actions/cartActions'
+import Cart from '../../components/Cart/Cart';
+
+import '../../style.scss';
 
 export default function Index() {
+  const [menuData, setMenuData] = useState([]);
   const dispatch = useDispatch();
 
   const click = (productId) => {
-    console.log('add ' + productId)
     dispatch(addProduct(productId));
   }
 
   const click2 = (productId) => {
-    console.log('rem ' + productId)
     dispatch(removeProduct(productId));
   }
 
+  useEffect(() => {
+    const getData = async () => {
+      const url = 'https://airbean.awesomo.dev/api/beans/';
+
+      try {
+        const resp = await fetch(url);
+        const data = await resp.json();
+        setMenuData(data.menu);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getData();
+  }, []);
+
+  const test = menuData.map((product) => {
+    return (
+      <article key={product.id}>
+        <button onClick={() => click(product)}>add product {product.id}</button>
+        <button onClick={() => click2(product)}>remove product {product.id}</button>
+      </article>
+    )
+  });
 
   return (
-    <>
-      <p>tt</p>
-      <p>tt</p>
-      <button onClick={() => click(1)}>add product 1</button>
-      <button onClick={() => click2(1)}>remove product 1</button>
-      <p>tt</p>
-      <button onClick={() => click(2)}>add product 2</button>
-      <button onClick={() => click2(2)}>remove product 2</button>
-    </>
+    <article className='test'>
+      <Cart />
+
+      <h1>test</h1>
+      {test}
+    </article>
   );
 }
