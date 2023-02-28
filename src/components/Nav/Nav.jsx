@@ -1,29 +1,58 @@
 import openNav from '../../assets/navicon.svg';
 import closeNav from '../../assets/close-icon.svg';
 import './Nav.scss';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Nav() {
+  const [navIcon, setNavIcon] = useState(openNav);
 
   const navRef = useRef();
 
   function showNav() {
     navRef.current.classList.toggle('show-nav');
+    if (navIcon === openNav) {
+      setNavIcon(closeNav)
+    } else{
+      setNavIcon(openNav)
+    }
   }
+
 
   return (
     <header className='nav__header'>
       <nav ref={ navRef }>
+
+      <NavLink to='/menu' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
         <h2>Meny</h2>
-        <h2>Vårt Kaffe</h2>
+      </NavLink>
+
+        <hr className="solid"/>
+
+        <NavLink to='/about' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+          <h2>Vårt Kaffe</h2>
+        </NavLink>
+
+        <hr className="solid"/>
+
+      <NavLink to='/profile' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
         <h2>Min profil</h2>
+      </NavLink>
+
+        <hr className="solid"/>
+
+      <NavLink to='/status' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
         <h2>Orderstatus</h2>
+      </NavLink>
+
+        <hr className="solid"/>
+
+      <NavLink to='/profile' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
         <h2>Orderhistorik</h2>
+      </NavLink>
       </nav>
 
-      <button className='nav__btn nav__btn--open' onClick={ showNav }>
-          <img src={ openNav } />
-      </button>
+      <img src={ navIcon } className='nav__btn' onClick={ showNav } />
 
     </header>
   );

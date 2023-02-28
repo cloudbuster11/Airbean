@@ -5,6 +5,10 @@
     background-color: colors.$pink;
 }
 
+.about__header, .about__footer {
+    width: 100%;
+}
+
 .about__content {
     padding: 1rem 1.3rem;
 }
@@ -23,7 +27,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .profile__photo {

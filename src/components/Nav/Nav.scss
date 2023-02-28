@@ -30,8 +30,27 @@ nav {
     background-color: colors.$brown;
 }
 
-h2 {
+.active, .inactive {
+    transition: 0.4s;
+    text-decoration: none;
+}
+
+.inactive {
     color: #fff;
+}
+
+.active {
+    color: colors.$orange;
+}
+
+.inactive:hover {
+    opacity: 30%;
+}
+
+.solid {
+    width: 48px;
+    border: 1px solid #FFFFFF33;
+    margin: 0;
 }
 
 .nav__btn {
