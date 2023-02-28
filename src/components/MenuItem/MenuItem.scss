@@ -1,27 +1,52 @@
+@use '../../scss/colors';
+@use '../../scss/mixins';
+
 .product {
   display: flex;
   margin-bottom: 2rem;
-}
 
-.product__addtocart {
-  height: 32px;
-  width: 32px;
-  font-size: 26px;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  border-radius: 99px;
-  margin-right: 1rem;
-}
+  color: colors.$brown;
 
-.product__text {
-  margin: 0;
-  margin-right: auto;
-  padding: 0;
-}
+  &__addtocart {
+    @include mixins.center;
+    @include mixins.circle(32px);
 
-.product__title {
-}
+    background-color: colors.$brown;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
 
-.product__desc {
+    border: none;
+
+    margin-right: 1rem;
+
+    >svg {
+      stroke: colors.$white;
+    }
+  }
+
+  &__text {
+    flex: 1;
+    margin: 0;
+  }
+
+  &__title {
+    font-size: 23px;
+    line-height: 120%;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  }
+
+  &__desc {
+    font-family: 'Work Sans';
+
+    font-style: normal;
+    font-weight: 400;
+
+    font-size: 12px;
+    line-height: 130%;
+  }
+
+  &__price {
+    font-size: 23px;
+    line-height: 120%;
+    white-space: nowrap;
+  }
 }

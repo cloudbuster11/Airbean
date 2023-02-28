@@ -44,14 +44,21 @@ export default function Menu() {
   });
 
   return (
-    <>
-      <img id='menu__top' src={leafTop}></img>
-      <article className='menu__container'>
+    <main
+      className='menu'
+      style={{
+        '--top-img': `url(${leafTop})`,
+        '--bottom-img': `url(${leafBottom})`,
+      }}
+    >
+      <header>
         <Cart />
+      </header>
+
+      <article className='menu__container'>
         <h1 className='menu__title'>Meny</h1>
         {allProductsElem}
       </article>
-      <img id='menu__bottom' src={leafBottom}></img>
-    </>
+    </main>
   );
 }
