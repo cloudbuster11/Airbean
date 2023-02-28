@@ -1,22 +1,31 @@
 @use '../../scss/colors';
 @use '../../scss/mixins';
 
-.menu__container {
-  background-color: colors.$pink;
-  padding: 1rem 1.5rem 5rem 1.5rem;
-}
+.menu {
+  display: flex;
+  flex-direction: column;
 
-.menu__title {
-  text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
+  min-height: 100%;
 
-#menu__top {
-  position: absolute;
-}
+  background:
+    no-repeat top var(--top-img),
+    no-repeat bottom var(--bottom-img),
+    colors.$pink;
 
-#menu__bottom {
-  position: relative;
-  bottom: 73px;
+  >header {
+    display: flex;
+    padding: 1rem 1rem 0 1rem;
+    // temporary flex
+    justify-content: flex-end;
+  }
+
+  &__container {
+    margin: 1rem 1.5rem 73px 1.5rem;
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 }
