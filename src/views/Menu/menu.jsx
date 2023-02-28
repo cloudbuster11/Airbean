@@ -6,6 +6,9 @@ import MenuItem from '../../components/MenuItem/MenuItem';
 import Cart from '../../components/Cart/Cart';
 import '../Menu/Menu.scss';
 
+import leafBottom from '../../assets/leafs_bottom.svg';
+import leafTop from '../../assets/leafs_top.svg';
+
 export default function Menu() {
   const [menuData, setMenuData] = useState([]);
 
@@ -41,10 +44,14 @@ export default function Menu() {
   });
 
   return (
-    <article className='menu__container'>
-      <Cart />
-      <h1 className='menu__title'>Meny</h1>
-      {allProductsElem}
-    </article>
+    <>
+      <img id='menu__top' src={leafTop}></img>
+      <article className='menu__container'>
+        <Cart />
+        <h1 className='menu__title'>Meny</h1>
+        {allProductsElem}
+      </article>
+      <img id='menu__bottom' src={leafBottom}></img>
+    </>
   );
 }
