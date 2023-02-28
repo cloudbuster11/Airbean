@@ -1,3 +1,13 @@
 .product {
   display: flex;
 }
+
+.product__addtocart {
+  height: 32px;
+  width: 32px;
+  font-size: 26px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 99px;
+}

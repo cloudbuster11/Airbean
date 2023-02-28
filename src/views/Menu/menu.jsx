@@ -20,14 +20,14 @@ export default function Menu() {
     getData();
   }, []);
 
-  const menuList = menuData.map((product) => {
+  const allProductsElem = menuData.map((product) => {
     return <MenuItem key={product.id} product={product} />;
   });
 
   return (
     <article className='menu__container'>
       <h1>Meny</h1>
-      {menuList}
+      {allProductsElem}
     </article>
   );
 }
