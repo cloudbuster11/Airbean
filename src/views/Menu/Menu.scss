@@ -1,11 +1,8 @@
-// @use '../../scss/_colors.scss';
-// @use '../../scss/_typography.scss';
-// @use '../../style.scss';
+@use '../../scss/colors';
+@use '../../scss/mixins';
 
 .menu__container {
-  background-color: #f3e4e1;
-  display: flex;
-  flex-direction: column;
+  background-color: colors.$pink;
   gap: 1rem;
 }
 

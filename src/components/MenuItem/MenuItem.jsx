@@ -3,7 +3,7 @@ import '../MenuItem/MenuItem.scss';
 export default function MenuItem(props) {
   return (
     <article className='product'>
-      <button className='product__addtocart' onClick={() => props.handleAddToCart(props.product.id)}>
+      <button className='product__addtocart' onClick={() => props.handleAddToCart(props.product)}>
         +
       </button>
       <section className='product__text'>

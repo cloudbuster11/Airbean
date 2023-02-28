@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { addProduct, removeProduct } from '../../actions/cartActions';
 import MenuItem from '../../components/MenuItem/MenuItem';
+import Cart from '../../components/Cart/Cart';
 import '../Menu/Menu.scss';
 
 export default function Menu() {
@@ -41,6 +42,7 @@ export default function Menu() {
 
   return (
     <article className='menu__container'>
+      <Cart />
       <h1 className='menu__title'>Meny</h1>
       {allProductsElem}
     </article>
