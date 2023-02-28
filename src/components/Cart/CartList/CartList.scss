@@ -1,0 +1,7 @@
+@use "../../../scss/colors";
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$white;
+}

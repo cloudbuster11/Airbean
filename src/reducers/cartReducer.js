@@ -3,26 +3,32 @@ const initalState = {
 };
 
 function cartReducer(state = initalState, action) {
+  const product = action.payload;
+
   switch (action.type) {
     case 'cart/addProduct':
       return {
         ...state,
         cart: {
           ...state.cart,
-          [action.payload]: (state.cart[action.payload] ?? 0) + 1,
-        }
+          [product.id]: {
+            ...product,
+            quantity: (state.cart[product.id]?.quantity ?? 0) + 1,
+          },
+        },
       };
 
     case 'cart/removeProduct':
-      if (state.cart[action.payload]) {
-        const { [action.payload]: quantity, ...filtered } = state.cart;
+      if (state.cart[product.id]?.quantity) {
+        const { [product.id]: _, ...filtered } = state.cart;
+        const { quantity } = state.cart[product.id];
 
         return {
           ...state,
           cart: quantity > 1
-            ? { ...state.cart, [action.payload]: state.cart[action.payload] - 1, }
-            : { ...filtered },
-        };
+            ? { ...state.cart, [product.id]: { ...product, quantity: quantity - 1 } }
+            : filtered,
+        }
       }
 
     default:

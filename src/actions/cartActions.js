@@ -1,14 +1,14 @@
-function addProduct(productId) {
+function addProduct(product) {
   return {
     type: 'cart/addProduct',
-    payload: productId,
+    payload: product,
   };
 }
 
-function removeProduct(productId) {
+function removeProduct(product) {
   return {
     type: 'cart/removeProduct',
-    payload: productId,
+    payload: product,
   };
 }
 
