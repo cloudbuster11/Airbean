@@ -1,9 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addProduct, removeProduct } from '../../actions/cartActions';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import '../Menu/Menu.scss';
 
 export default function Menu() {
   const [menuData, setMenuData] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (productId) => {
+    console.log('add ' + productId);
+    dispatch(addProduct(productId));
+  };
+
+  const handleRemoveFromCart = (productId) => {
+    console.log('rem ' + productId);
+    dispatch(removeProduct(productId));
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -21,7 +36,7 @@ export default function Menu() {
   }, []);
 
   const allProductsElem = menuData.map((product) => {
-    return <MenuItem key={product.id} product={product} />;
+    return <MenuItem key={product.id} product={product} handleAddToCart={handleAddToCart} />;
   });
 
   return (
