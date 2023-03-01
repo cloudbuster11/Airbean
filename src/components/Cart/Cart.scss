@@ -5,13 +5,13 @@
     @include mixins.center;
     @include mixins.circle(60px);
 
-    position: fixed;
+    position: relative;
     z-index: 1;
     background-color: colors.$brown;
 
     &__number-of-items {
         @include mixins.center;
-        @include mixins.circle(22px);
+        @include mixins.circle(24px);
 
         font-family: 'PT Serif';
         font-weight: 700;
