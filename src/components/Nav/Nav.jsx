@@ -29,7 +29,7 @@ export default function Nav() {
           <h2>Min profil</h2>
         </NavLink>
 
-        <hr className="solinav__solidd" />
+        <hr className="nav__solid" />
 
         <NavLink to='/status' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
           <h2>Orderstatus</h2>
