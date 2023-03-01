@@ -9,7 +9,7 @@ export default function OrderHistory() {
   const [orderHistory, setOrderHistory] = useState();
 
   useEffect(() => {
-    const BASE_URL = 'https://airbean.awesomo.dev/api/user/';
+    const BASEURL = 'https://airbean.awesomo.dev/api/user';
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -20,13 +20,13 @@ export default function OrderHistory() {
 
     const checkToken = async () => {
       try {
-        const resp = await fetch(`${BASE_URL}status`, requestOptions);
+        const resp = await fetch(`${BASEURL}/status`, requestOptions);
         const data = await resp.json();
 
         if (data.success) getData();
         else if (!data.success) {
           sessionStorage.clear();
-          window.location.reload(false);
+          window.location.reload(true);
         }
       } catch (err) {
         console.error(err);
@@ -37,7 +37,7 @@ export default function OrderHistory() {
 
     const getData = async () => {
       try {
-        const resp = await fetch(`${BASE_URL}history`, requestOptions);
+        const resp = await fetch(`${BASEURL}/history`, requestOptions);
         const data = await resp.json();
         setOrderHistory(data);
       } catch (err) {
