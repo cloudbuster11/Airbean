@@ -1,5 +1,5 @@
-import openNav from '../../assets/navicon.svg';
-import closeNav from '../../assets/close-icon.svg';
+import openNav from '../../assets/nav_icon.svg';
+import closeNav from '../../assets/close_icon.svg';
 import './Nav.scss';
 import { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';

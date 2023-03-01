@@ -1,0 +1,6 @@
+@use '../../scss/colors';
+
+.landing__container {
+    background-color: colors.$dark-green;
+    height: 100vh;
+}
