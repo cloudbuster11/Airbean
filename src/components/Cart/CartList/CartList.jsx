@@ -7,6 +7,30 @@ export default function CartList({ items, show }) {
   const dispatch = useDispatch();
   const totalSum = items.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
 
+  const placeOrder = async () => {
+    const url = 'https://airbean.awesomo.dev/api/beans/order';
+
+    const order = items.flatMap((item) =>
+      Array(item.quantity).fill(0).map(() => {
+        return { 'name': item.title, 'price': item.price, }
+      })
+    );
+
+    const request = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 'details': { 'order': order } }),
+    };
+
+    try {
+      const resp = await fetch(url, request);
+      const data = await resp.json();
+      console.log(data) // eta and ordernr - wip
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (show) return (
     <article className='cart-list' style={{ zIndex: show && 5 }}>
       <h2>Din beställning</h2>
@@ -45,7 +69,7 @@ export default function CartList({ items, show }) {
         <p>inkl moms + drönarleverans</p>
       </article>
 
-      <button className='cart-list__button'>Take my money!</button>
+      <button className='cart-list__button' onClick={() => items.length && placeOrder()}>Take my money!</button>
     </article>
   );
 }
