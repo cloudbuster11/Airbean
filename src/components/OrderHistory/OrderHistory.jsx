@@ -9,18 +9,18 @@ export default function OrderHistory() {
   const [orderHistory, setOrderHistory] = useState();
 
   useEffect(() => {
-    const checkToken = async () => {
-      const url = 'https://airbean.awesomo.dev/api/user/status';
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${sessionStorage.token}`,
-        },
-      };
+    const BASE_URL = 'https://airbean.awesomo.dev/api/user/';
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.token}`,
+      },
+    };
 
+    const checkToken = async () => {
       try {
-        const resp = await fetch(url, requestOptions);
+        const resp = await fetch(`${BASE_URL}status`, requestOptions);
         const data = await resp.json();
 
         if (data.success) getData();
@@ -36,17 +36,8 @@ export default function OrderHistory() {
     checkToken();
 
     const getData = async () => {
-      const url = 'https://airbean.awesomo.dev/api/user/history';
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${sessionStorage.token}`,
-        },
-      };
-
       try {
-        const resp = await fetch(url, requestOptions);
+        const resp = await fetch(`${BASE_URL}history`, requestOptions);
         const data = await resp.json();
         setOrderHistory(data);
       } catch (err) {
