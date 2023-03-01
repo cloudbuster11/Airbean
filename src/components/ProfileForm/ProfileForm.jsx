@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logoSmall from '../../assets/logo_small.svg';
 
 import './ProfileForm.scss';
 
@@ -18,13 +19,15 @@ export default function ProfileForm({ title, button, handler, children }) {
   };
 
   return (
-    <article className='form'>
-      <h2>Välkommen till AirBean-familjen!</h2>
-      <p>{title}</p>
+    <article className='user'>
+      <img className='user__logo' src={logoSmall}></img>
+      <h2 className='user__title'>Välkommen till AirBean-familjen!</h2>
+      <p className='user__subtitle'>{title}</p>
 
-      <form onSubmit={submit}>
-        <label>Namn</label>
+      <form className='form' onSubmit={submit}>
+        <label className='form__label'>Namn</label>
         <input
+          className='form__input'
           name='username'
           type='text'
           placeholder='Användarnamn'
@@ -32,18 +35,22 @@ export default function ProfileForm({ title, button, handler, children }) {
           onChange={handleChange}
         />
 
-        <label>Lösenord</label>
+        <label className='form__label'>Lösenord</label>
         <input
+          className='form__input'
           name='password'
           type='password'
           placeholder='Lösenord'
           value={data.password}
           onChange={handleChange}
         />
-        <button type='submit'>{button}</button>
-      </form>
 
-      {children}
+        {children}
+
+        <button className='form__submit' type='submit'>
+          {button}
+        </button>
+      </form>
     </article>
   );
 }
