@@ -1,59 +1,48 @@
-import openNav from '../../assets/nav_icon.svg';
-import closeNav from '../../assets/close_icon.svg';
-import './Nav.scss';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import openNav from '../../assets/navicon.svg';
+import closeNav from '../../assets/close-icon.svg';
+
+import './Nav.scss';
+
 export default function Nav() {
-  const [navIcon, setNavIcon] = useState(openNav);
-
-  const navRef = useRef();
-
-  function showNav() {
-    navRef.current.classList.toggle('show-nav');
-    if (navIcon === openNav) {
-      setNavIcon(closeNav)
-    } else{
-      setNavIcon(openNav)
-    }
-  }
-
+  const [show, setShow] = useState(false);
 
   return (
-    <header className='nav__header'>
-      <nav ref={ navRef }>
+    <>
+      <nav className={'nav ' + (show ? 'nav--show-nav' : '')}>
 
-      <NavLink to='/menu' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-        <h2>Meny</h2>
-      </NavLink>
+        <NavLink to='/menu' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+          <h2>Meny</h2>
+        </NavLink>
 
-        <hr className="solid"/>
+        <hr className="nav__solid" />
 
-        <NavLink to='/about' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+        <NavLink to='/about' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
           <h2>Vårt Kaffe</h2>
         </NavLink>
 
-        <hr className="solid"/>
+        <hr className="nav__solid" />
 
-      <NavLink to='/profile' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-        <h2>Min profil</h2>
-      </NavLink>
+        <NavLink to='/profile' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+          <h2>Min profil</h2>
+        </NavLink>
 
-        <hr className="solid"/>
+        <hr className="solinav__solidd" />
 
-      <NavLink to='/status' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-        <h2>Orderstatus</h2>
-      </NavLink>
+        <NavLink to='/status' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+          <h2>Orderstatus</h2>
+        </NavLink>
 
-        <hr className="solid"/>
+        <hr className="nav__solid" />
 
-      <NavLink to='/profile' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-        <h2>Orderhistorik</h2>
-      </NavLink>
+        <NavLink to='/profile' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+          <h2>Orderhistorik</h2>
+        </NavLink>
       </nav>
 
-      <img src={ navIcon } className='nav__btn' onClick={ showNav } />
-
-    </header>
+      <img src={show ? closeNav : openNav} className='nav__btn' onClick={() => setShow(!show)} />
+    </>
   );
 }

@@ -38,14 +38,6 @@ svg {
   flex-direction: column;
 
   min-height: 100%;
-
-  &__content {
-    grid-area: content;
-  }
-
-  &__content--full {
-    grid-area: header / header / content / content;
-  }
 }
 
 .overlay {
