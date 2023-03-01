@@ -1,11 +1,17 @@
-import profilePic from '../../assets/cortado.svg';
-import './About.scss';
 import Nav from '../../components/Nav/Nav';
+import Header from '../../components/Header/Header';
+
+import './About.scss';
+
+import profilePic from '../../assets/cortado.svg';
 
 export default function About() {
   return (
-    <section className='about__container'>
-      <Nav />
+    <main className='container about'>
+      <Header>
+        <Nav />
+      </Header>
+
       <section className='about__content'>
         <h1 className='about__heading'>Vårt kaffe</h1>
         <p className='about__text'>
@@ -19,12 +25,13 @@ export default function About() {
         <p className='about__text'>
           Roast id macchiato, single shot siphon mazagran milk fair trade est aroma a half and half and, so, galão iced to go, whipped as cream cup pumpkin spice iced. At extra, rich grinder, brewed to go, steamed half and half at, that, percolator macchiato trifecta and body as arabica dripper. In galão black java milk sit trifecta, robusta, acerbic café au lait instant shop latte. Seasonal bar shop filter aroma id.
         </p>
+
         <article className='about__profile'>
-          <img src={ profilePic } className='profile__photo' alt='eva cortado photo' />
+          <img src={profilePic} className='profile__photo' alt='eva cortado photo' />
           <h3 className='profile__heading'>Eva Cortado</h3>
           <p className='profile__text'>VD & Grundare</p>
         </article>
       </section>
-    </section>
+    </main>
   );
 }
