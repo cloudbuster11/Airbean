@@ -1,0 +1,10 @@
+@use '../../../scss/colors';
+
+.history {
+  width: 320px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+}

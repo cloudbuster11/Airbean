@@ -51,8 +51,11 @@
 
   &__changeview {
     margin-bottom: 1rem;
-    font-family: 'PT Serif';
-    font-weight: 100;
+  }
+
+  &__link {
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   &__submit {

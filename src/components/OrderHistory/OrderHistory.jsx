@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import OrderItem from './OrderItem/OrderItem';
 
+import profileImg from '../../assets/profile_img.svg';
+import './OrderHistory.scss';
+
 export default function OrderHistory() {
   const [orderHistory, setOrderHistory] = useState();
 
@@ -39,10 +42,15 @@ export default function OrderHistory() {
   }
 
   return (
-    <article>
-      <h1>Orderhistorik</h1>
-      {orderHistory.success === false ? orderHistory.message : orderList}
-    </article>
+    <main className='orderhistory'>
+      <img className='orderhistory__profile' src={profileImg}></img>
+      {/* <h3>{data.name}</h3> */}
+      <h3 className='orderhistory__name'>Sixten Kaffelövér</h3>
+      <article className='orderhistory__stats'>
+        <h3 className='orderhistory__subtitle'>Orderhistorik</h3>
+        {orderHistory.success === false ? orderHistory.message : orderList}
+      </article>
+    </main>
   );
 }
 

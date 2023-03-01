@@ -52,7 +52,10 @@ export default function Profile() {
       key='login'
     >
       <p className='form__changeview'>
-        Inget konto än? Skapa ett <span onClick={() => setDisplaySignUp(true)}>här</span>
+        Inget konto än? Skapa ett{' '}
+        <span className='form__link' onClick={() => setDisplaySignUp(true)}>
+          här
+        </span>
       </p>
     </ProfileForm>
   );
@@ -65,14 +68,19 @@ export default function Profile() {
       key='signUp'
     >
       <p className='form__changeview'>
-        Redan medlem? Logga in <span onClick={() => setDisplaySignUp(false)}>här</span>
+        Redan medlem? Logga in{' '}
+        <span className='form__link' onClick={() => setDisplaySignUp(false)}>
+          här
+        </span>
       </p>
     </ProfileForm>
   );
 
   return (
     <main className='container profile'>
-      <Nav />
+      <Header>
+        <Nav />
+      </Header>
 
       {token ? <OrderHistory /> : !displaySignUp ? loginForm : signUpForm}
     </main>
