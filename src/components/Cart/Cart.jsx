@@ -11,15 +11,11 @@ export default function Cart() {
 
   const numberOfItems = cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
-  const toggleCart = () => {
-    if (numberOfItems) setShowCart(!showCart);
-  }
-
   return (
     <>
       {showCart && <div className='overlay' />}
 
-      <article className='cart' onClick={() => toggleCart()}>
+      <article className='cart' onClick={() => setShowCart(!showCart)}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
