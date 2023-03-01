@@ -72,9 +72,7 @@ export default function Profile() {
 
   return (
     <main className='container profile'>
-      <Header>
-        <Nav />
-      </Header>
+      <Nav />
 
       {token ? <OrderHistory /> : !displaySignUp ? loginForm : signUpForm}
     </main>

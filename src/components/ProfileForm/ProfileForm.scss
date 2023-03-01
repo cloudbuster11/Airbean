@@ -2,8 +2,11 @@
 @use '../../scss/colors';
 
 .form {
-  background-color: colors.$pink;
-  margin-top: 5rem;
   width: 350px;
+  background-color: colors.$pink;
+  margin-top: 6rem;
+  padding: 1rem;
+  border-radius: 5px;
+
   align-self: center;
 }

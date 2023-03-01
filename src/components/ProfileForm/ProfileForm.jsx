@@ -19,7 +19,7 @@ export default function ProfileForm({ title, button, handler, children }) {
 
   return (
     <article className='form'>
-      <h1>Välkommen till AirBean-familjen!</h1>
+      <h2>Välkommen till AirBean-familjen!</h2>
       <p>{title}</p>
 
       <form onSubmit={submit}>
