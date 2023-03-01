@@ -19,20 +19,20 @@
 
     @else if $style ==top {
         background:
-            no-repeat top url(/public/leafs_top.svg),
+            no-repeat top url(/leafs_top.svg),
             $color;
     }
 
     @else if $style ==bottom {
         background:
-            no-repeat bottom url(/public/leafs_bottom.svg),
+            no-repeat bottom url(/leafs_bottom.svg),
             $color;
         padding-bottom: 73px;
     }
 
     @else if $style ==(top & bottom) {
-        background: no-repeat top url(/public/leafs_top.svg),
-            no-repeat bottom url(/public/leafs_bottom.svg),
+        background: no-repeat top url(/leafs_top.svg),
+            no-repeat bottom url(/leafs_bottom.svg),
             $color;
         padding-bottom: 73px;
     }
