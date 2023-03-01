@@ -11,11 +11,13 @@ export default function Cart() {
 
   const numberOfItems = cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
+  const zIndex = showCart ? 2 : 1;
+
   return (
     <>
-      {showCart && <div className='overlay' />}
+      {showCart && <div className='overlay' style={{ zIndex: zIndex }} />}
 
-      <article className='cart' onClick={() => setShowCart(!showCart)}>
+      <article className='cart' onClick={() => setShowCart(!showCart)} style={{ zIndex: zIndex }}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

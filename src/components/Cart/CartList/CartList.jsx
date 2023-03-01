@@ -8,7 +8,7 @@ export default function CartList({ items, show }) {
   const totalSum = items.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
 
   if (show) return (
-    <article className='cart-list'>
+    <article className='cart-list' style={{ zIndex: show && 5 }}>
       <h2>Din beställning</h2>
       <section className='cart-list__products'>
         {items.map((item) =>

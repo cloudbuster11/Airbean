@@ -1,18 +1,6 @@
 @use '../../scss/colors';
 
-.nav__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 0 2rem;
-    height: 100px;
-    width: 375px;
-    position: absolute;
-    top: 0;
-}
-
-nav {
+.nav {
     padding: 0;
     margin: 0;
     position: absolute;
@@ -20,48 +8,48 @@ nav {
     left: 0;
     right: 0;
     width: inherit;
-    height: 100vh; /* fix ? */
+    height: 100vh;
     transition: 1s;
     display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 1.5rem;
     background-color: colors.$brown;
-}
+    z-index: 2;
 
-.active, .inactive {
-    transition: 0.4s;
-    text-decoration: none;
-}
+    &__active,
+    &__inactive {
+        transition: 0.4s;
+        text-decoration: none;
+    }
 
-.inactive {
-    color: #fff;
-}
+    &__inactive {
+        color: #fff;
+    }
 
-.active {
-    color: colors.$orange;
-}
+    &__active {
+        color: colors.$orange;
+    }
 
-.inactive:hover {
-    opacity: 30%;
-}
+    &__inactive:hover {
+        opacity: 30%;
+    }
 
-.solid {
-    width: 48px;
-    border: 1px solid #FFFFFF33;
-    margin: 0;
-}
+    &__solid {
+        width: 48px;
+        border: 1px solid #FFFFFF33;
+        margin: 0;
+    }
 
-.nav__btn {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    left: 1rem;
-    top: 2rem;
-}
+    &__btn {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        z-index: 2;
+    }
 
-.show-nav {
-	transform: translateY(100vh);
+    &--show-nav {
+        transform: translateY(100vh);
+    }
 }
