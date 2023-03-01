@@ -36,4 +36,11 @@
             $color;
         padding-bottom: 73px;
     }
+
+    @else if $style ==(left & right) {
+        background: no-repeat left url(/src/assets/landing_leaves_left.svg),
+            no-repeat right url(/src/assets/landing_leaves_right.svg),
+            $color;
+        background-size: contain;
+    }
 }

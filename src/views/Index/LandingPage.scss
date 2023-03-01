@@ -1,6 +1,23 @@
 @use '../../scss/colors';
+@use '../../scss/mixins';
 
 .landing__container {
-    background-color: colors.$dark-green;
     height: 100vh;
+    @include mixins.background(left & right, colors.$dark-green);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: colors.$white;
+}
+
+.landing__container p {
+    font-size: 9px;
+    letter-spacing: 0.2rem;
+}
+
+.landing__container h1 {
+    font-family: 'Rufina';
+    margin-bottom: 0.5rem;
 }

@@ -1,13 +1,10 @@
 import profilePic from '../../assets/cortado.svg';
-import headerImg from '../../assets/leafs_top.svg';
-import footerImg from '../../assets/leafs_bottom.svg';
 import './About.scss';
 import Nav from '../../components/Nav/Nav';
 
 export default function About() {
   return (
     <section className='about__container'>
-      <img src={ headerImg } className='about__header' alt='header leaves' />
       <Nav />
       <section className='about__content'>
         <h1 className='about__heading'>Vårt kaffe</h1>
@@ -28,7 +25,6 @@ export default function About() {
           <p className='profile__text'>VD & Grundare</p>
         </article>
       </section>
-      <img src={ footerImg } className='about__footer' alt='footer leaves' />
     </section>
-  )
+  );
 }
