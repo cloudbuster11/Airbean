@@ -1,4 +1,5 @@
 @use '../../scss/colors';
+@use '../../scss/mixins';
 
 .nav {
     padding: 0;
@@ -25,7 +26,7 @@
     }
 
     &__inactive {
-        color: #fff;
+        color: colors.$white;
     }
 
     &__active {
@@ -43,10 +44,23 @@
     }
 
     &__btn {
-        cursor: pointer;
-        background-color: transparent;
+        @include mixins.center;
+        @include mixins.circle(48px);
+        background-color: colors.$white;
+
+        transition: all 0.2s;
+
         border: none;
         z-index: 2;
+
+        >svg {
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    &__btn:hover {
+        background-color: colors.$orange;
     }
 
     &--show-nav {
