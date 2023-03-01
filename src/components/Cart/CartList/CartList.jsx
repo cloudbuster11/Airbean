@@ -22,6 +22,10 @@ export default function CartList({ items, show }) {
       body: JSON.stringify({ 'details': { 'order': order } }),
     };
 
+    if (sessionStorage.token) {
+      request.headers.Authorization = `Bearer ${sessionStorage.token}`;
+    }
+
     try {
       const resp = await fetch(url, request);
       const data = await resp.json();
