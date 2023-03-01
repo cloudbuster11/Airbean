@@ -1,53 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { addProduct, removeProduct } from '../../actions/cartActions'
-import Cart from '../../components/Cart/Cart';
-
+import './Index.scss';
 import '../../style.scss';
+import logo from '../../assets/airbean_logo.svg';
+import { Link } from 'react-router-dom';
 
 export default function Index() {
-  const [menuData, setMenuData] = useState([]);
-  const dispatch = useDispatch();
-
-  const click = (productId) => {
-    dispatch(addProduct(productId));
-  }
-
-  const click2 = (productId) => {
-    dispatch(removeProduct(productId));
-  }
-
-  useEffect(() => {
-    const getData = async () => {
-      const url = 'https://airbean.awesomo.dev/api/beans/';
-
-      try {
-        const resp = await fetch(url);
-        const data = await resp.json();
-        setMenuData(data.menu);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getData();
-  }, []);
-
-  const test = menuData.map((product) => {
     return (
-      <article key={product.id}>
-        <button onClick={() => click(product)}>add product {product.id}</button>
-        <button onClick={() => click2(product)}>remove product {product.id}</button>
-      </article>
-    )
-  });
-
-  return (
-    <article className='test'>
-      <Cart />
-
-      <h1>test</h1>
-      {test}
-    </article>
-  );
+        <div className='landing__container'>
+            <Link to='/menu' className='landing__logo'>
+                <img src={logo} alt="airbean logo" />
+            </Link>
+            <h1 className='landing__heading'>AIR BEAN</h1>
+            <p className='landing__text'>DRONE DELIVERED COFFEE</p>
+        </div>
+    );
 }
+  

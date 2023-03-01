@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import './ProfileForm.scss';
+
 export default function ProfileForm({ title, button, handler, children }) {
   const [data, setData] = useState({
     username: '',
@@ -8,15 +10,16 @@ export default function ProfileForm({ title, button, handler, children }) {
 
   const handleChange = (event) => {
     setData({ ...data, [event.target.name]: event.target.value });
-  }
+  };
 
   const submit = (event) => {
     event.preventDefault();
     handler(data);
-  }
+  };
 
   return (
-    <article>
+    <article className='form'>
+      <h2>Välkommen till AirBean-familjen!</h2>
       <p>{title}</p>
 
       <form onSubmit={submit}>
@@ -43,4 +46,4 @@ export default function ProfileForm({ title, button, handler, children }) {
       {children}
     </article>
   );
-};
+}
