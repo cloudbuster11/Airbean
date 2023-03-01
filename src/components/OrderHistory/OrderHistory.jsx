@@ -41,6 +41,12 @@ export default function OrderHistory() {
     });
   }
 
+  let totalSum = orderHistory.orderHistory.reduce(function (previousValue, currentValue) {
+    return {
+      total: previousValue.total + currentValue.total,
+    };
+  });
+
   return (
     <main className='orderhistory'>
       <img className='orderhistory__profile' src={profileImg}></img>
@@ -49,6 +55,13 @@ export default function OrderHistory() {
       <article className='orderhistory__stats'>
         <h3 className='orderhistory__subtitle'>Orderhistorik</h3>
         {orderHistory.success === false ? orderHistory.message : orderList}
+        <section className='orderhistory__total'>
+          <p>Totalt spenderat</p>
+          <p>
+            {totalSum.total}
+            <span> kr</span>
+          </p>
+        </section>
       </article>
     </main>
   );
