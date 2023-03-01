@@ -1,0 +1,9 @@
+@use '../../scss/mixins';
+@use '../../scss/colors';
+
+.form {
+  background-color: colors.$pink;
+  margin-top: 5rem;
+  width: 350px;
+  align-self: center;
+}

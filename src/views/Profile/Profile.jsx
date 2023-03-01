@@ -3,6 +3,10 @@ import { useState } from 'react';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import OrderHistory from '../../components/OrderHistory/OrderHistory';
 
+import Header from '../../components/Header/Header';
+import Nav from '../../components/Nav/Nav';
+import './Profile.scss';
+
 export default function Profile() {
   const [token, setToken] = useState(sessionStorage.token);
   const [displaySignUp, setDisplaySignUp] = useState(false);
@@ -10,10 +14,10 @@ export default function Profile() {
   const createRequest = (data) => {
     return {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     };
-  }
+  };
 
   const login = async (userData) => {
     const url = 'https://airbean.awesomo.dev/api/user/login';
@@ -67,15 +71,12 @@ export default function Profile() {
   );
 
   return (
-    <article>
-      <h1>Välkommen till AirBean-familjen!</h1>
+    <main className='container profile'>
+      <Header>
+        <Nav />
+      </Header>
 
-      {token
-        ? <OrderHistory />
-        : !displaySignUp
-          ? loginForm
-          : signUpForm
-      }
-    </article>
+      {token ? <OrderHistory /> : !displaySignUp ? loginForm : signUpForm}
+    </main>
   );
 }
