@@ -1,7 +1,6 @@
 import './OrderItem.scss';
 
 export default function OrderItem(props) {
-  console.log(props);
   return (
     <article className='history'>
       <section className='history__left'>
