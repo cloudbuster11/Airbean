@@ -26,6 +26,7 @@ export default function Profile() {
       const resp = await fetch(url, createRequest(userData));
       const data = await resp.json();
       sessionStorage.setItem('token', data.token);
+      sessionStorage.setItem('username', userData.username);
       setToken(data.token);
     } catch (err) {
       console.error(err);

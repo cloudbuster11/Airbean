@@ -41,7 +41,7 @@ export default function OrderHistory() {
   return (
     <main className='orderhistory'>
       <img className='orderhistory__profile' src={profileImg}></img>
-      <h3 className='orderhistory__name'>Sixten Kaffelövér</h3>
+      <h3 className='orderhistory__name'>{sessionStorage.getItem('username')}</h3>
       <article className='orderhistory__stats'>
         <h3 className='orderhistory__subtitle'>Orderhistorik</h3>
         {orderHistory.success ? orderList : <p>Inga beställningar finns för den här användaren.</p>}
