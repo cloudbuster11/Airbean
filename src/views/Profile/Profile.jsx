@@ -51,7 +51,7 @@ export default function Profile() {
       handler={login}
       key='login'
     >
-      <p>
+      <p className='form__changeview'>
         Inget konto än? Skapa ett <span onClick={() => setDisplaySignUp(true)}>här</span>
       </p>
     </ProfileForm>
@@ -64,7 +64,7 @@ export default function Profile() {
       handler={signUp}
       key='signUp'
     >
-      <p>
+      <p className='form__changeview'>
         Redan medlem? Logga in <span onClick={() => setDisplaySignUp(false)}>här</span>
       </p>
     </ProfileForm>
