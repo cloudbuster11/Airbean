@@ -35,17 +35,17 @@ export default function OrderHistory() {
   if (orderHistory === undefined) return;
 
   let orderList = {};
+  let totalSum;
   if (orderHistory.success === true) {
+    totalSum = orderHistory.orderHistory.reduce(function (previousValue, currentValue) {
+      return {
+        total: previousValue.total + currentValue.total,
+      };
+    });
     orderList = orderHistory.orderHistory.map((product, id) => {
       return <OrderItem key={id} product={product} />;
     });
   }
-
-  let totalSum = orderHistory.orderHistory.reduce(function (previousValue, currentValue) {
-    return {
-      total: previousValue.total + currentValue.total,
-    };
-  });
 
   return (
     <main className='orderhistory'>
@@ -56,11 +56,15 @@ export default function OrderHistory() {
         <h3 className='orderhistory__subtitle'>Orderhistorik</h3>
         {orderHistory.success === false ? orderHistory.message : orderList}
         <section className='orderhistory__total'>
-          <p>Totalt spenderat</p>
-          <p>
-            {totalSum.total}
-            <span> kr</span>
-          </p>
+          {orderHistory.success === true ? (
+            <>
+              <p>Totalt spenderat</p>
+              <p>
+                {totalSum.total}
+                <span> kr</span>
+              </p>
+            </>
+          ) : null}
         </section>
       </article>
     </main>
