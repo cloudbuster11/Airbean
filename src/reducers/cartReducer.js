@@ -42,6 +42,9 @@ function cartReducer(state = initalState, action) {
         };
       }
 
+    case 'cart/clearCart':
+      return { ...state, cart: [] };
+
     default:
       return state;
   }
