@@ -50,7 +50,7 @@ export default function OrderStatus({ order }) {
         }
       </h2>
 
-      {eta > 0 &&
+      {eta >= 0 &&
         <h3 className='order-status__eta'>
           <span>{eta}</span> minuter
         </h3>
