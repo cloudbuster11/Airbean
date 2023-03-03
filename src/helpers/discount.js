@@ -9,7 +9,7 @@ function queryDiscount(cart, combination) {
 function queryQuantities(cart, combination) {
   return combination
     .flatMap((query) => cart.filter((item) => item.id === query))
-    .map((item) => item.quantity)
+    .map((item) => item.quantity);
 }
 
 function discountQuantity(quantities) {
@@ -38,4 +38,4 @@ function applyDiscounts(cart) {
   return [...cart, ...discountedCart];
 }
 
-export { applyDiscounts }
+export { applyDiscounts };
