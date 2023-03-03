@@ -7,9 +7,9 @@ function createRequest(body = {}) {
     method: Object.keys(body).length ? 'POST' : 'GET',
     headers: {
       'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {})
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
-    ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {})
+    ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
   };
 }
 
@@ -49,17 +49,15 @@ async function validator(callback) {
 }
 
 async function postOrder(order) {
-  return await validator(async () =>
-    await callApi(
-      '/beans/order', { 'details': { 'order': order } }
-    )
-  );
+  return await validator(async () => await callApi('/beans/order', { details: { order: order } }));
 }
 
 async function getOrder(orderNr) {
-  return await validator(async () =>
-    await callApi(`/beans/order/status/${orderNr}`)
-  );
+  return await validator(async () => await callApi(`/beans/order/status/${orderNr}`));
 }
 
-export { postOrder, getOrder };
+async function getOrderHistory() {
+  return await validator(async () => await callApi('/user/history/'));
+}
+
+export { postOrder, getOrder, getOrderHistory };

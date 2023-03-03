@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { getOrderHistory } from '../../helpers/api';
 
 import OrderItem from './OrderItem/OrderItem';
 import OrderTotal from './OrderItem/OrderTotal/OrderTotal';
@@ -8,47 +11,27 @@ import './OrderHistory.scss';
 export default function OrderHistory() {
   const [orderHistory, setOrderHistory] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const BASEURL = 'https://airbean.awesomo.dev/api/user';
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${sessionStorage.token}`,
-      },
-    };
-
-    const checkToken = async () => {
-      try {
-        const resp = await fetch(`${BASEURL}/status`, requestOptions);
-        const data = await resp.json();
-
-        if (data.success) getData();
-        else if (!data.success) {
-          sessionStorage.clear();
-          window.location.reload(true);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    checkToken();
-
     const getData = async () => {
-      try {
-        const resp = await fetch(`${BASEURL}/history`, requestOptions);
-        const data = await resp.json();
+      const data = await getOrderHistory();
+
+      if (data.message === 'invalid-token') {
+        navigate('/profile');
+      }
+
+      if (data.success) {
         setOrderHistory(data);
-      } catch (err) {
-        console.error(err);
       }
     };
+
+    getData();
   }, []);
 
   let orderList = {};
   if (orderHistory === undefined) return;
-  else if (orderHistory.success) {
+  else {
     orderList = orderHistory.orderHistory.map((product, id) => {
       return <OrderItem key={id} product={product} />;
     });
