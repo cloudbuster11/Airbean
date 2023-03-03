@@ -12,4 +12,11 @@ function removeProduct(product) {
   };
 }
 
-export { addProduct, removeProduct };
+function clearCart(product) {
+  return {
+    type: 'cart/clearCart',
+    payload: product,
+  };
+}
+
+export { addProduct, removeProduct, clearCart };

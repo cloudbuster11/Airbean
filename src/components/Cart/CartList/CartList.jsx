@@ -1,39 +1,37 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
-import { removeProduct } from '../../../actions/cartActions';
+import { addProduct, removeProduct, clearCart } from '../../../actions/cartActions';
+
+import { postOrder } from '../../../helpers/api';
 
 import './CartList.scss';
 
 export default function CartList({ items, show }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const totalSum = items.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
 
   const placeOrder = async () => {
-    const url = 'https://airbean.awesomo.dev/api/beans/order';
-
     const order = items.flatMap((item) =>
       Array(item.quantity).fill(0).map(() => {
         return { 'name': item.title, 'price': item.price, }
       })
     );
 
-    const request = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 'details': { 'order': order } }),
-    };
+    const data = await postOrder(order);
 
-    if (sessionStorage.token) {
-      request.headers.Authorization = `Bearer ${sessionStorage.token}`;
+    if (data.message === 'invalid-token') {
+      navigate('/profile');
     }
 
-    try {
-      const resp = await fetch(url, request);
-      const data = await resp.json();
-      console.log(data) // eta and ordernr - wip
-    } catch (err) {
-      console.error(err);
+    if (data.orderNr) {
+      dispatch(clearCart());
+      sessionStorage.setItem('currentOrder', data.orderNr);
+      navigate('/status');
     }
-  };
+  }
 
   if (show) return (
     <article className='cart-list' style={{ zIndex: show && 5 }}>
@@ -52,10 +50,16 @@ export default function CartList({ items, show }) {
               <p className='cart-list__quantity'>{item.quantity}</p>
             </aside>
 
-            <aside>
-              <button className='cart-list__remove' onClick={() => dispatch(removeProduct(item))}>
+            <aside className='cart-list__buttons'>
+              <button className='cart-list__icon-button' onClick={() => dispatch(addProduct(item))}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+
+              <button className='cart-list__icon-button' onClick={() => dispatch(removeProduct(item))}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </button>
             </aside>
