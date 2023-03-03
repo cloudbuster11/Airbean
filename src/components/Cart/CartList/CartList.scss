@@ -29,43 +29,12 @@
         flex-direction: column;
     }
 
-    &__product {
-        display: flex;
-
-        margin: 0.5rem 0;
-
-        >aside {
-            display: flex;
-            flex-direction: column;
-        }
-    }
-
     &__divider {
         content: ' ';
         flex: 1;
         border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
         height: 27px;
         margin: 0 10px 0 5px;
-    }
-
-    &__title {
-        padding-top: 6px;
-        font-size: 20px;
-        line-height: 120%;
-    }
-
-    &__price {
-        margin-top: 3px;
-        font-size: 12px;
-        line-height: 130%;
-    }
-
-    &__quantity {
-        margin: auto auto;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 130%;
     }
 
     &__total {
@@ -92,29 +61,6 @@
     &__divider--total {
         height: 1.2rem;
         margin: 0 1rem;
-    }
-
-    &__buttons {
-        row-gap: 4px;
-    }
-
-    &__icon-button {
-        @include mixins.center;
-        @include mixins.circle(24px);
-        background-color: colors.$pink;
-        border: none;
-        margin: auto 0;
-        margin-left: 0.8rem;
-        transition: all 0.5s;
-    }
-
-    &__icon-button:hover {
-        background-color: colors.$brown;
-
-        >svg {
-            transition: all 0.2s;
-            stroke: colors.$pink;
-        }
     }
 
     &__button {
