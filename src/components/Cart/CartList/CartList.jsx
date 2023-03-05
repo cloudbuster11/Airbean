@@ -7,7 +7,7 @@ import { postOrder } from '../../../helpers/api';
 
 import CartListItem from './CartListItem/CartListItem';
 
-import { applyDiscounts } from '../../../helpers/discount';
+import { getDiscounts } from '../../../helpers/discount';
 
 import './CartList.scss';
 
@@ -15,11 +15,13 @@ export default function CartList({ items, show }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const sum = items.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+  const discounts = getDiscounts(items);
 
-  const discount = applyDiscounts(items)
-    .filter((items) => items.type === 'discount')
-    .reduce((acc, curr) => acc + (curr.reduction * curr.quantity), 0);
+  const sum =
+    items.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+
+  const discount =
+    discounts.reduce((acc, curr) => acc + (curr.reduction * curr.quantity), 0);
 
   const totalSum = sum - discount;
 
@@ -48,8 +50,12 @@ export default function CartList({ items, show }) {
       <h2>Din beställning</h2>
 
       <section className='cart-list__products'>
-        {applyDiscounts(items).map((item) =>
+        {items.map((item) =>
           <CartListItem item={item} key={item.id} />
+        )}
+
+        {discounts.map((item) =>
+          <CartListItem discount item={item} key={item.id} />
         )}
       </section>
 

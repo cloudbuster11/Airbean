@@ -3,14 +3,14 @@ import { addProduct, removeProduct } from '../../../../actions/cartActions';
 
 import './CartListItem.scss';
 
-export default function CartListItem({ item }) {
+export default function CartListItem({ item, discount }) {
   const dispatch = useDispatch();
 
   return (
     <article className='cart-list-item__product'>
       <aside>
         <h3 className='cart-list-item__title'>{item.title}</h3>
-        {item.type !== 'discount'
+        {!discount
           ? <p className='cart-list-item__price'>{item.price * item.quantity} kr</p>
           : <p className='cart-list-item__price-reduction'>
             -{item.reduction * item.quantity} kr
@@ -24,7 +24,7 @@ export default function CartListItem({ item }) {
         <p className='cart-list-item__quantity'>{item.quantity}</p>
       </aside>
 
-      {item.type !== 'discount' &&
+      {!discount &&
         <aside className='cart-list-item__buttons'>
           <button className='cart-list-item__icon-button' onClick={() => dispatch(addProduct(item))}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
