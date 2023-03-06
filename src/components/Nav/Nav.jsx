@@ -16,13 +16,13 @@ export default function Nav() {
   return (
     <>
       <nav className={'nav ' + (show ? 'nav--show-nav' : '')}>
-        {links.map((link, i) =>
+        {links.map((link) =>
           <Fragment key={`link-${link.to}`} >
             <NavLink to={link.to} className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
               <h2>{link.title}</h2>
             </NavLink>
 
-            {i !== links.length - 1 && <hr className='nav__solid' />}
+            <hr className='nav__solid' />
           </Fragment>
         )}
       </nav>
