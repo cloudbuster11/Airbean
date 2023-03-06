@@ -39,6 +39,7 @@ export default function ProfileForm({ title, button, handler, error, children })
           placeholder='Användarnamn'
           value={data.username}
           onChange={handleChange}
+          minLength={1}
         />
 
         <label className='form__label'>Lösenord</label>
