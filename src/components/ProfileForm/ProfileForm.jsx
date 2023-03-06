@@ -24,11 +24,7 @@ export default function ProfileForm({ title, button, handler, error, children })
       <h2 className='user__title'>Välkommen till AirBean-familjen!</h2>
       <p className='user__subtitle'>{title}</p>
 
-      {error &&
-        <p className='form__error'>
-          {error}
-        </p>
-      }
+      {error && <p className='form__error'>{error}</p>}
 
       <form className='form' onSubmit={submit}>
         <label className='form__label'>Namn</label>
