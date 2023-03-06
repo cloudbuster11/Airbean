@@ -34,9 +34,6 @@ export default function Nav() {
 
         <hr className="nav__solid" />
 
-        <NavLink to='/profile' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
-          <h2>Orderhistorik</h2>
-        </NavLink>
       </nav>
 
       <button className='nav__btn' onClick={() => setShow(!show)}>
