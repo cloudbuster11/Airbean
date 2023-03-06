@@ -36,6 +36,7 @@ export default function ProfileForm({ title, button, handler, error, children })
           value={data.username}
           onChange={handleChange}
           minLength={1}
+          required
         />
 
         <label className='form__label'>Lösenord</label>
@@ -47,6 +48,7 @@ export default function ProfileForm({ title, button, handler, error, children })
           value={data.password}
           onChange={handleChange}
           minLength={5}
+          required
         />
 
         {children}
