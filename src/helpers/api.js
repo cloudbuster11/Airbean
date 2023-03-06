@@ -60,4 +60,13 @@ async function getOrderHistory() {
   return await validator(async () => await callApi('/user/history/'));
 }
 
-export { postOrder, getOrder, getOrderHistory };
+async function postLogin(userData) {
+  return await callApi('/user/login', userData);
+}
+
+async function postSignUp(userData) {
+  return await callApi('/user/signup', userData);
+}
+
+
+export { postOrder, getOrder, getOrderHistory, postLogin, postSignUp };

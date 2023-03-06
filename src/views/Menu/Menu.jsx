@@ -15,14 +15,8 @@ export default function Menu() {
 
   const dispatch = useDispatch();
 
-  const handleAddToCart = (productId) => {
-    console.log('add ' + productId);
-    dispatch(addProduct(productId));
-  };
-
-  const handleRemoveFromCart = (productId) => {
-    console.log('rem ' + productId);
-    dispatch(removeProduct(productId));
+  const handleAddToCart = (product) => {
+    dispatch(addProduct(product));
   };
 
   useEffect(() => {
@@ -40,9 +34,9 @@ export default function Menu() {
     getData();
   }, []);
 
-  const allProductsElem = menuData.map((product) => {
-    return <MenuItem key={product.id} product={product} handleAddToCart={handleAddToCart} />;
-  });
+  const allProductsElem = menuData.map((product) =>
+    <MenuItem key={product.id} product={product} handleAddToCart={handleAddToCart} />
+  );
 
   return (
     <main className='container menu'>
