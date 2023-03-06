@@ -49,6 +49,7 @@ export default function ProfileForm({ title, button, handler, error, children })
           placeholder='Lösenord'
           value={data.password}
           onChange={handleChange}
+          minLength={5}
         />
 
         {children}
