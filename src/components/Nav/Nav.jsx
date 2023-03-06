@@ -17,7 +17,7 @@ export default function Nav() {
     <>
       <nav className={'nav ' + (show ? 'nav--show-nav' : '')}>
         {links.map((link, i) =>
-          <Fragment key={`link-${i}-${link.to}`} >
+          <Fragment key={`link-${link.to}`} >
             <NavLink to={link.to} className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
               <h2>{link.title}</h2>
             </NavLink>
