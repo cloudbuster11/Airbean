@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addProduct, removeProduct } from '../../actions/cartActions';
+import { getMenu } from '../../helpers/api';
+import { addProduct } from '../../actions/cartActions';
 
 import Header from '../../components/Header/Header';
 import Cart from '../../components/Cart/Cart';
@@ -15,34 +16,21 @@ export default function Menu() {
 
   const dispatch = useDispatch();
 
-  const handleAddToCart = (productId) => {
-    console.log('add ' + productId);
-    dispatch(addProduct(productId));
-  };
-
-  const handleRemoveFromCart = (productId) => {
-    console.log('rem ' + productId);
-    dispatch(removeProduct(productId));
+  const handleAddToCart = (product) => {
+    dispatch(addProduct(product));
   };
 
   useEffect(() => {
     const getData = async () => {
-      const url = 'https://airbean.awesomo.dev/api/beans/';
+      const data = await getMenu();
 
-      try {
-        const resp = await fetch(url);
-        const data = await resp.json();
+      if (data.success) {
         setMenuData(data.menu);
-      } catch (err) {
-        console.error(err);
       }
     };
+
     getData();
   }, []);
-
-  const allProductsElem = menuData.map((product) => {
-    return <MenuItem key={product.id} product={product} handleAddToCart={handleAddToCart} />;
-  });
 
   return (
     <main className='container menu'>
@@ -53,7 +41,9 @@ export default function Menu() {
 
       <article className='menu__container'>
         <h1 className='menu__title'>Meny</h1>
-        {allProductsElem}
+        {menuData.map((product) =>
+          <MenuItem key={product.id} product={product} handleAddToCart={handleAddToCart} />
+        )}
       </article>
     </main>
   );

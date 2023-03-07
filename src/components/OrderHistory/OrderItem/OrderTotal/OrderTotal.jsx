@@ -1,15 +1,13 @@
 export default function OrderTotal({ orderHistory }) {
-  let totalSum = orderHistory.orderHistory.reduce(function (previousValue, currentValue) {
-    return {
-      total: previousValue.total + currentValue.total,
-    };
-  });
+  const totalSum = orderHistory.reduce((previousValue, currentValue) =>
+    previousValue + currentValue.total, 0
+  );
 
   return (
     <>
       <p>Totalt spenderat</p>
       <p>
-        {totalSum.total}
+        {totalSum}
         <span> kr</span>
       </p>
     </>

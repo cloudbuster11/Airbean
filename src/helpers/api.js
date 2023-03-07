@@ -48,6 +48,10 @@ async function validator(callback) {
   }
 }
 
+async function getMenu() {
+  return await callApi('/beans');
+}
+
 async function postOrder(order) {
   return await validator(async () => await callApi('/beans/order', { details: { order: order } }));
 }
@@ -60,4 +64,15 @@ async function getOrderHistory() {
   return await validator(async () => await callApi('/user/history/'));
 }
 
-export { postOrder, getOrder, getOrderHistory };
+async function postLogin(userData) {
+  return await callApi('/user/login', userData);
+}
+
+async function postSignUp(userData) {
+  return await callApi('/user/signup', userData);
+}
+
+export {
+  getMenu, postOrder, getOrder,
+  getOrderHistory, postLogin, postSignUp
+};

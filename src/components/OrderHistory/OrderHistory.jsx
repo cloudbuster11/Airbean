@@ -22,20 +22,16 @@ export default function OrderHistory() {
       }
 
       if (data.success) {
-        setOrderHistory(data);
+        setOrderHistory(data.orderHistory);
       }
     };
 
     getData();
   }, []);
 
-  let orderList = {};
-  if (orderHistory === undefined) return;
-  else {
-    orderList = orderHistory.orderHistory.map((product, id) => {
-      return <OrderItem key={id} product={product} />;
-    });
-  }
+  const orderList = orderHistory?.map((product, id) =>
+    <OrderItem key={id} product={product} />
+  );
 
   return (
     <main className='orderhistory'>
@@ -43,9 +39,9 @@ export default function OrderHistory() {
       <h3 className='orderhistory__name'>{sessionStorage.getItem('username')}</h3>
       <article className='orderhistory__stats'>
         <h3 className='orderhistory__subtitle'>Orderhistorik</h3>
-        {orderHistory.success ? orderList : <p>Inga beställningar finns för den här användaren.</p>}
+        {orderHistory ? orderList : <p>Inga beställningar finns för den här användaren.</p>}
         <section className='orderhistory__total'>
-          {orderHistory.success ? <OrderTotal orderHistory={orderHistory} /> : null}
+          {orderHistory && <OrderTotal orderHistory={orderHistory} />}
         </section>
       </article>
     </main>

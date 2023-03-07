@@ -3,7 +3,7 @@ import logoSmall from '../../assets/logo_small.svg';
 
 import './ProfileForm.scss';
 
-export default function ProfileForm({ title, button, handler, children }) {
+export default function ProfileForm({ title, button, handler, error, children }) {
   const [data, setData] = useState({
     username: '',
     password: '',
@@ -24,6 +24,8 @@ export default function ProfileForm({ title, button, handler, children }) {
       <h2 className='user__title'>Välkommen till AirBean-familjen!</h2>
       <p className='user__subtitle'>{title}</p>
 
+      {error && <p className='form__error'>{error}</p>}
+
       <form className='form' onSubmit={submit}>
         <label className='form__label'>Namn</label>
         <input
@@ -33,6 +35,8 @@ export default function ProfileForm({ title, button, handler, children }) {
           placeholder='Användarnamn'
           value={data.username}
           onChange={handleChange}
+          minLength={1}
+          required
         />
 
         <label className='form__label'>Lösenord</label>
@@ -43,6 +47,8 @@ export default function ProfileForm({ title, button, handler, children }) {
           placeholder='Lösenord'
           value={data.password}
           onChange={handleChange}
+          minLength={5}
+          required
         />
 
         {children}

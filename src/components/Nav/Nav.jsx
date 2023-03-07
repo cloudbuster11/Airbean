@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './Nav.scss';
@@ -6,34 +6,25 @@ import './Nav.scss';
 export default function Nav() {
   const [show, setShow] = useState(false);
 
+  const links = [
+    { title: 'Meny', to: '/menu' },
+    { title: 'Vårt kaffe', to: '/about' },
+    { title: 'Min Profil', to: '/profile' },
+    { title: 'Orderstatus', to: '/status' },
+  ];
+
   return (
     <>
       <nav className={'nav ' + (show ? 'nav--show-nav' : '')}>
+        {links.map((link) =>
+          <Fragment key={`link-${link.to}`} >
+            <NavLink to={link.to} className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
+              <h2>{link.title}</h2>
+            </NavLink>
 
-        <NavLink to='/menu' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
-          <h2>Meny</h2>
-        </NavLink>
-
-        <hr className="nav__solid" />
-
-        <NavLink to='/about' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
-          <h2>Vårt Kaffe</h2>
-        </NavLink>
-
-        <hr className="nav__solid" />
-
-        <NavLink to='/profile' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
-          <h2>Min profil</h2>
-        </NavLink>
-
-        <hr className="nav__solid" />
-
-        <NavLink to='/status' className={({ isActive }) => (isActive ? 'nav__active' : 'nav__inactive')}>
-          <h2>Orderstatus</h2>
-        </NavLink>
-
-        <hr className="nav__solid" />
-
+            <hr className='nav__solid' />
+          </Fragment>
+        )}
       </nav>
 
       <button className='nav__btn' onClick={() => setShow(!show)}>
