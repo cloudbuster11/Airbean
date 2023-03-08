@@ -8,8 +8,7 @@ function queryDiscount(cart, combination) {
 
 function discountQuantity(cart, combination) {
   const quantities = combination
-    .flatMap((query) => cart.filter((item) => item.id === query))
-    .map((item) => item.quantity);
+    .map((query) => cart.find((item) => item.id === query).quantity);
 
   const quantity = Math.min(...quantities) % Math.max(...quantities);
 
