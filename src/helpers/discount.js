@@ -13,7 +13,7 @@ function discountQuantity(cart, combination) {
 
   const quantity = Math.min(...quantities) % Math.max(...quantities);
 
-  return quantity ? quantity : Math.min(...quantities);
+  return quantity || Math.min(...quantities);
 }
 
 function getDiscounts(cart) {
