@@ -10,9 +10,7 @@ function discountQuantity(cart, combination) {
   const quantities = combination
     .map((query) => cart.find((item) => item.id === query).quantity);
 
-  const quantity = Math.min(...quantities) % Math.max(...quantities);
-
-  return quantity || Math.min(...quantities);
+  return Math.min(...quantities);
 }
 
 function getDiscounts(cart) {
