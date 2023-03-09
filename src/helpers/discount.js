@@ -1,6 +1,6 @@
 import discounts from '../assets/discounts.json';
 
-function queryDiscount(cart, combination) {
+function matchDiscount(cart, combination) {
   return combination
     .map((query) => cart.some((item) => item.id === query))
     .every((match) => match === true);
@@ -17,7 +17,7 @@ function discountQuantity(cart, combination) {
 
 function getDiscounts(cart) {
   return discounts.map((discount) => {
-    const isMatch = queryDiscount(cart, discount.combination);
+    const isMatch = matchDiscount(cart, discount.combination);
 
     if (isMatch) {
       return {
